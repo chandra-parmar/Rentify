@@ -58,3 +58,13 @@ body{
 .card-body{
     padding: 0 ;
 }
+
+.show-img{
+    height: 30vh;
+}
+
+
+
+.edit-btn{
+    background-color: rgb(228, 91, 91);
+}

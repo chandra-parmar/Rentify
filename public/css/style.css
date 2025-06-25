@@ -9,37 +9,46 @@ body{
     font-size: 2rem;
 }
 
-footer{
-
+.nav-link{
+    color:#222222 !important;
 }
 .f-info-links a{
-   text-decoration: none;
-   color: black;
+    text-decoration: none;
+    color:#222222;
 }
-
+.f-info-socials i{
+    text-decoration: none;
+    color: #222222;
+}
 .f-info-links{
-    width: 100%;
-    color: black;
+    width:100%;
 }
 .f-info-socials{
     width: 100%;
     font-size: 1.5rem;
-    margin-right: 2rem;
+    margin-right: 1rem;
+    
+}
+.f-info-links{
+    width:100%;
 }
 
-.f-info-socials i{
-    margin-right: 1rem ;
-}
-
-.f-info-links:hover{
-    text-decoration: underline;
-}
 .f-info{
     text-align: center;
-    display: flex;
     height: 8rem;
-    background-color:grey ;
-    flex-wrap:wrap;
+    background-color: beige;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: space-evenly;
+}
+
+.card{
+    border:none;
+    margin-bottom:2rem;
+}
+.card-img-top{
+    border-radius:1rem ;
+    width: 100%;
+    object-fit: cover;
 }

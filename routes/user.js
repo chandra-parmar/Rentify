@@ -5,65 +5,28 @@ const wrapAsync= require('../utils/wrapAsync')
 const passport= require('passport')
 const { saveRedirectUrl } = require('../middleware')
 
+const userController = require('../controllers/users')
 
 
-router.get('/signup',(req,res)=>{
-    res.render('users/signup.ejs')
-    
-})
+//signup form 
+router.get('/signup',userController.rednerSignupForm)
 
-router.post('/signup',wrapAsync(async(req,res)=>{
-    try{
-         let{username,email,password} = req.body
-         const newUser= new User({email,username})
-         const registeredUser = await User.register(newUser,password)
-          console.log(registeredUser)
-          req.login(registeredUser,(err)=>{
-            //automatically login after sign up
-            if(err)
-            {
-              return next(err)
-            }
-        req.flash('success',"welcome to Rentify!")
-         res.redirect(req.session.redirectUrl)
-          })
+router.post('/signup',wrapAsync(userController.signup))
          
-    }catch(e)
-    {
-      req.flash('error',e.message)
-      res.direct('/signup')  
-    }
-   
-}))
-
 //login route
-router.get('/login',saveRedirectUrl,(req,res)=>{
-  res.render('users/login.ejs')
-})
+router.get('/login',userController.renderLoginForm)
 
 router.post("/login",
   passport.authenticate('local',{
     failureRedirect:"/login",
     failureFlash:true 
   }),
-  async(req,res)=>{
-    req.flash("success","welcome to Rentify ! you are logged in !")
-    let redirectUrl= res.locals.redirectUrl || "/listings"
-    res.redirect(redirectUrl)
-  }
+  userController.login  
 )
 
 //logout route
-router.get('/logout',(req,res,next)=>{
-  req.logout((err)=>{
-    if(err)
-    {
-      return next(err)
-    }
-    req.flash('success',"you are logged out !")
-    res.redirect('/listings')
-  })
-})
+router.get('/logout',userController.logout)
+
 
 
 

@@ -15,6 +15,7 @@ module.exports.listingSchema=Joi.object(
     }
 )
 
+
 //validation for review rating schema
 module.exports.reviewSchema = Joi.object(
     {

@@ -5,6 +5,10 @@ const router= express.Router()
 const { listingSchema } = require('../schema.js');
 const ExpressError = require('../utils/ExpressError')
 const {isLoggedIn} = require('../middleware.js')
+const {storage} = require('../cloudConfig.js')
+//parsing form data
+const multer = require('multer')
+const upload = multer({storage})
 
 const validateListing = (req, res, next) => {
     const { error } = listingSchema.validate(req.body);
@@ -30,7 +34,9 @@ router.get('/new',isLoggedIn,listingController.renderNewForm)
 router.get("/:id",wrapAsync(listingController.showListing))
 
 //create route
-router.post('/',isLoggedIn,validateListing,wrapAsync(listingController.createListing))
+//router.post('/',isLoggedIn,validateListing,wrapAsync(listingController.createListing))
+
+router.post("/",isLoggedIn,upload.single('listing[image]'),validateListing,wrapAsync(listingController.createListing))
 
 //edit route
 router.get("/:id/edit", isLoggedIn,wrapAsync(listingController.renderEditForm));

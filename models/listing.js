@@ -10,14 +10,8 @@ const listingSchema=new Schema({
   },
   description: String,
   image: {
-    filename: {
-      type: String,
-      default: 'defaultimage'
-    },
-    url: {
-      type: String,
-      default: 'https://unsplash.com/photos/a-small-brick-house-with-a-red-roof-nhLHN4TbXP4'
-    }
+      url:String,
+      filename:String
   },
   price: Number,
   location: String,

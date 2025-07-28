@@ -9,7 +9,7 @@
   <div class="card-body">
     <p class="card-text">
       
-      <i>Owned By :- <%=listing.owner.username %></i>
+      <i>Owned By :- <%=listing.owner ? listing.owner.username:"Unknown" %></i>
       <br>
          <br>
         <%= listing.description %><br>
@@ -20,7 +20,8 @@
   </div>
 </div>
 
-    <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+    <% if(currUser && listing.owner && currUser._id.toString() === listing.owner._id.toString()) { %>
+
 
     
     <div class="btns">

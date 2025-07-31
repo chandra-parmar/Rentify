@@ -33,6 +33,30 @@ router.get('/new',isLoggedIn,listingController.renderNewForm)
 //show route
 router.get("/:id",wrapAsync(listingController.showListing))
 
+//search route
+router.get('/listings/search',async(req,res)=>{
+    const query = req.query.query
+
+    if(!query)
+    {
+        return res.redirect('/listings')
+    }
+
+    try{
+        const listings= await Listing.find(
+            {
+                name:{$regex : query ,$options:'i'}
+            }
+        )
+         res.render('listings/index',{allListings:listings })
+    }catch(error)
+    {
+        console.error('search error'+error)
+        res.status(500).send('Server error during search')
+    }
+   
+})
+
 //create route
 //router.post('/',isLoggedIn,validateListing,wrapAsync(listingController.createListing))
 

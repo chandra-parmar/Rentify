@@ -39,7 +39,9 @@ module.exports.renderLoginForm = (req,res)=>{
 
 //login 
 module.exports.login = async(req,res)=>{
+
     req.flash('success',"welcome back to Rentify!")
+    
     let redirectUrl = res.locals.redirectUrl || "/listings"
     res.redirect(redirectUrl)
 }

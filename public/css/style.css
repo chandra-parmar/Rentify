@@ -47,20 +47,25 @@ body{
 }
 
 .listing-card{
-    border:none;
+    border:none !important;
     margin-bottom:2rem;
 }
 .card-img-top{
-    border-radius:1rem ;
-    width: 100%;
-    object-fit: cover;
+    border-radius:1px !important;
+    width: 100% !important;
+    object-fit: cover !important;
 }
 .card-body{
-    padding: 0 ;
+    padding: 0 !important;
+    
 }
 
 .show-img{
     height: 30vh;
+}
+
+main.flex-fill{
+    flex:1;
 }
 
 

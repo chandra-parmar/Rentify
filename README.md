@@ -54,15 +54,15 @@ Rentify is a full-stack Node.js web application where users can create and brows
 
    
 ✍️ Future Improvements
-Booking & calendar system
+-> Booking & calendar system
 
-Geolocation & map integration
+-> Geolocation & map integration
 
-User profile pages
+-> User profile pages
 
-Payment gateway integration
+-> Payment gateway integration
 
-Pagination & search filters
+->Pagination & search filters
 
 🤝 Contributing
 Pull requests are welcome. For major changes, please open an issue first.

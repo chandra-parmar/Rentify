@@ -1,5 +1,8 @@
 const Listing = require('../models/listing')
-
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
+const mapToken = process.env.MAP_TOKEN
+const geocodingClient = mbxGeocoding({accessToken:mapToken})
+require('dotenv').config()
 
 //index controller
 module.exports.index = async(req,res)=>{
@@ -34,6 +37,17 @@ module.exports.showListing = async(req,res)=>{
 }
 
 module.exports.createListing = async(req,res,next)=>{
+ 
+   let response = await geocodingClient.forwardGeocode(
+    {
+        query:req.body.listing.location,
+        limit:2
+    }
+   )
+   .send()
+    
+
+
   let url =req.file.path
   let filename= req.file.filename
   console.log(url,"..",filename)
@@ -41,7 +55,10 @@ module.exports.createListing = async(req,res,next)=>{
    console.log(newListing)
    newListing.owner = req.user._id
    newListing.image ={url,filename}
-   await newListing.save()
+
+   newListing.geometry = response.body.features[0].geometry
+
+    await newListing.save()
    req.flash('success',"New listing created!")
    res.redirect('/listings')
 
@@ -63,7 +80,19 @@ module.exports.renderEditForm = async(req,res)=>{
 //update listing
 module.exports.updateListing = async(req,res)=>{
     let {id } = req.params
-    await Listing.findByIdAndUpdate(id,{...req.body.listing})
+
+    let response = await geocodingClient.forwardGeocode(
+        {
+            query:req.body.listing.location,
+            limit:1
+        }
+    ).send()
+
+  const listing=  await Listing.findByIdAndUpdate(id,{...req.body.listing})
+
+  listing.geometry = response.body.features[0].geometry
+  await listing.save()
+
     req.flash('success',"listing updated!")
     res.redirect(`/listings/${id}`)
 }

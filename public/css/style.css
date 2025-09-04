@@ -1,42 +1,44 @@
-body{
+body {
     background-color: pink;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-.navbar{
+
+.navbar {
     height: 3rem;
 }
-.fa-compass{
+
+.fa-compass {
     color: rgb(204, 57, 57);
     font-size: 2rem;
 }
 
-.nav-link{
+.nav-link {
     color:#222222 !important;
 }
-.f-info-links a{
+
+.f-info-links a {
     text-decoration: none;
     color:#222222;
 }
-.f-info-socials i{
+
+.f-info-socials i {
     text-decoration: none;
     color: #222222;
 }
-.f-info-links{
-    width:100%;
-}
-.f-info-socials{
-    width: 100%;
-    font-size: 1.5rem;
-    margin-right: 1rem;
-    
-}
-.f-info-links{
+
+.f-info-links {
     width:100%;
 }
 
-.f-info{
+.f-info-socials {
+    width: 100%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.f-info {
     text-align: center;
     height: 8rem;
     background-color: beige;
@@ -46,27 +48,73 @@ body{
     align-items: space-evenly;
 }
 
-.listing-card{
-    border:none !important;
-    margin-bottom:2rem;
+.listing-card {
+    border: none !important;
+    margin-top: 50px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
 }
-.card-img-top{
-    border-radius:1px !important;
+
+.card-img-top {
+    border-radius: 12px 12px 0 0 !important;
     width: 100% !important;
     object-fit: cover !important;
 }
-.card-body{
-    padding: 0 !important;
-    
+
+.card-body {
+    padding: 15px !important;
 }
 
-.show-img{
+/* Show page image */
+.show-img {
     height: 30vh;
+    object-fit: cover;
 }
 
-main.flex-fill{
-    flex:1;
+/* Buttons container */
+.btns {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
 }
 
+.btns .btn {
+    border-radius: 8px;
+    padding: 8px 16px;
+}
 
+/* Review section */
+.review-section {
+    margin-top: 40px;
+}
 
+.review-section h4 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.review-section textarea {
+    border-radius: 8px;
+}
+
+/* Individual review card */
+.review-card {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    border: none;
+}
+
+/* Map */
+#map {
+    height: 400px;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+main.flex-fill {
+    flex: 1;
+}
